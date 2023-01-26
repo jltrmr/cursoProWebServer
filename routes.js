@@ -1,15 +1,16 @@
 const express = require('express')
+const usuarios = require('./users')
 
 function escucha(app){
     const router = express.Router()
     app.use('/api',router)
+    const misUsuarios = new usuarios()
 
-    router.get('/datos',async function(req, res, next){
+    router.get('/data',async function(req, res, next){
         try{
+            const users = misUsuarios.getUsuarios(req, query)
             res.status(200).json({
-                'nombre':'José Luis Torres Rodríguez',
-                'telefono':'3411003391',
-                'email':'jose.tr1@tlajomulco.tecnm.mx'
+                'usuarios' : users
             })
         }catch(error){
             console(error)
